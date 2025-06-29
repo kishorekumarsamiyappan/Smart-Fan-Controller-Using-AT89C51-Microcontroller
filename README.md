@@ -1,7 +1,3 @@
-Great! Here's a clean, modern, and trending-style GitHub README.md file tailored for your project: Automatic Temperature-Controlled Fan Using AT89C51 Microcontroller.
-
-📄 GitHub README.md — Copy & Paste This
-
 # 🔥 Automatic Temperature-Controlled Fan using AT89C51
 
 A standalone smart fan controller that adjusts fan speed based on real-time temperature using AT89C51 microcontroller, LM35 sensor, and software-generated PWM. Designed as a compact, cost-effective embedded system — no IoT or Wi-Fi required!
@@ -98,7 +94,7 @@ Insert simulation screenshots or waveform plots here:
 
 1. Clone this repo:
 
-   git clone [https://github.com/your-username/auto-fan-controller](https://github.com/your-username/auto-fan-controller)
+   git clone [https://github.com/your-username/auto-fan-controller]([https://github.com/your-username/auto-fan-controller](https://github.com/kishorekumarsamiyappan/Smart-Fan-Controller-Using-AT89C51-Microcontroller.git))
 
 2. Open Temp Fan Control.pdsprj in Proteus 8.17
 
