@@ -1,12 +1,12 @@
 # 🔥 Automatic Temperature-Controlled Fan using AT89C51
-
+---
 A standalone smart fan controller that adjusts fan speed based on real-time temperature using AT89C51 microcontroller, LM35 sensor, and software-generated PWM. Designed as a compact, cost-effective embedded system — no IoT or Wi-Fi required!
 
 🧪 Built as part of:
 22ECL42 – Microprocessor and Microcontroller Lab
 Department of ECE, Kongu Engineering College
 
----
+
 
 ## 🛠️ Project Overview
 
@@ -20,7 +20,7 @@ This system:
   * Display temperature and fan status on LCD
 * Simulates everything in Proteus 8.17
 
-—
+
 
 ## 🔧 Components Used
 
@@ -34,7 +34,7 @@ This system:
 | Power Supply (5V & 12V) | System power                           |
 | Proteus 8.17 Software   | Circuit simulation & waveform testing  |
 
-—
+
 
 ## ⚙️ How It Works
 
@@ -48,7 +48,7 @@ This system:
 * Fan speed is driven via L293D based on PWM logic
 * LCD shows current temperature and fan status in real-time
 
-—
+
 
 ## 📷 Screenshots
 
@@ -58,7 +58,7 @@ Insert simulation screenshots or waveform plots here:
 * [ ] PWM waveform (50% and 100% duty cycle)
 * [ ] LCD output at various temperatures
 
-—
+
 
 ## 🧠 Key Learning Areas
 
@@ -69,7 +69,7 @@ Insert simulation screenshots or waveform plots here:
 * Motor control using H-Bridge driver
 * Hardware simulation and debugging in Proteus
 
-—
+
 
 ## 👨‍💻 Team
 
@@ -77,7 +77,7 @@ Insert simulation screenshots or waveform plots here:
 * Kishorekumar S (23ECR117)
 * Krishnakumar VR (23ECR118)
 
-—
+
 
 ## 📂 Repo Contents
 
@@ -88,7 +88,7 @@ Insert simulation screenshots or waveform plots here:
 | /code                   | Microcontroller source code     |
 | /screenshots            | Circuit + PWM waveform captures |
 
-—
+
 
 ## 🚀 How to Run
 
@@ -102,7 +102,7 @@ Insert simulation screenshots or waveform plots here:
 
 4. Simulate and test across various temperatures
 
-—
+
 
 ## 🧩 Real-World Use Cases
 
@@ -110,7 +110,7 @@ Insert simulation screenshots or waveform plots here:
 * Offline temperature regulation for labs / server racks
 * Embedded systems learning project
 
-—
+
 
 📌 Feel free to fork this project or open an issue to collaborate!
 
