@@ -107,7 +107,7 @@ High Status WaveForm :
 
 1. Clone this repo:
 
-   git clone [https://github.com/your-username/auto-fan-controller]([https://github.com/your-username/auto-fan-controller](https://github.com/kishorekumarsamiyappan/Smart-Fan-Controller-Using-AT89C51-Microcontroller.git))
+   git clone [https://github.com/kishorekumarsamiyappan/Smart-Fan-Controller-Using-AT89C51-Microcontroller.git]
 
 2. Open Temp Fan Control.pdsprj in Proteus 8.17
 
