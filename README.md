@@ -54,7 +54,7 @@ This system:
 
 Insert simulation screenshots or waveform plots here:
 
-* [ ] Proteus circuit design
+* ![Proteus circuit design](https://github.com/user-attachments/assets/d0a91145-9052-4ffa-a892-57d00be14e0f)
 * [ ] PWM waveform (50% and 100% duty cycle)
 * [ ] LCD output at various temperatures
 
