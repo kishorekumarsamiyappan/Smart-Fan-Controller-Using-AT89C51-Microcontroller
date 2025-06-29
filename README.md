@@ -85,7 +85,8 @@ Insert simulation screenshots or waveform plots here:
 | ----------------------- | ------------------------------- |
 | Title MPMC Report.pdf   | Full project documentation      |
 | Temp Fan Control.pdsprj | Proteus simulation project      |
-| /code                   | Microcontroller source code     |
+| Auto Temp Fan (100%)    |
+ 11.0592MHZ.txt           | Microcontroller source code     |
 | /screenshots            | Circuit + PWM waveform captures |
 
 
