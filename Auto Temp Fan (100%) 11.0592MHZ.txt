@@ -1,0 +1,231 @@
+ORG 0000H
+LJMP MAIN
+
+ORG 000BH
+LJMP TIMER_ISR
+
+; ----------- RAM Variable Definitions ------------
+PWM_FLAG   EQU 32H
+TEMP_VAL   EQU 33H
+ON_DELAY   EQU 31H
+OFF_DELAY  EQU 30H
+
+
+MAIN:
+    MOV P0, #0FFH         ; ADC Data Bus input
+    SETB P1.5             ; Default Fan state: logic 1
+    CLR P1.6
+
+    ; LCD Initialization
+    MOV A,#38H
+    ACALL CMD
+    
+    ACALL DELAY
+    MOV A,#0EH
+    
+    ACALL CMD
+    ACALL DELAY
+    
+    MOV A,#01H
+    ACALL CMD
+    ACALL DELAY
+    
+    MOV A,#080H
+    ACALL CMD
+    ACALL DELAY
+
+    ; Welcome message
+    MOV DPTR, #MSG1
+    ACALL WRITESTR
+    MOV A,#0C0H
+    ACALL CMD
+    MOV DPTR, #MSG2
+    ACALL WRITESTR
+    ACALL DELAY1
+    MOV A,#01H
+    ACALL CMD
+
+    ; Display Labels
+    MOV A,#080H
+    ACALL CMD
+    MOV DPTR, #TEMPMSG
+    ACALL WRITESTR
+    MOV A,#0C0H
+    ACALL CMD
+    MOV DPTR, #FANMSG
+    ACALL WRITESTR
+
+MAIN_LOOP:
+    ; Start ADC0804 Conversion
+    SETB P3.5      ; INTR dummy set
+    SETB P3.3      ; WR = 1
+    CLR P3.4       ; RD = 0
+    SETB P3.4      ; RD = 1
+
+WAIT_ADC:
+    JB P3.5, WAIT_ADC
+    CLR P3.3       ; WR = 0
+    MOV TEMP_VAL, P0
+
+    ; Display Temperature
+    MOV A,#086H
+    ACALL CMD
+    ACALL SHOW_TEMP
+
+    ; Fan control logic
+    MOV A, TEMP_VAL
+    CJNE A, #25, CHK25
+    LJMP FAN_OFF
+CHK25: JC FAN_OFF
+    CJNE A, #30, CHK30
+    LJMP FAN_ON
+CHK30: JC FAN_PWM
+    LJMP FAN_ON
+
+FAN_OFF:
+    CLR TR0
+    MOV IE, #80H        ; Disable Timer Interrupt
+    CLR P1.5            ; Fan logic 0
+    CLR P1.6
+    MOV A,#0C6H
+    ACALL CMD
+    MOV DPTR, #LOWMSG
+    ACALL WRITESTR
+    LJMP CONTINUE
+
+FAN_PWM:
+    ; Set 50% duty cycle
+    MOV R0, #ON_DELAY
+    MOV A, #80H
+    MOV @R0, A
+    MOV R0, #OFF_DELAY
+    MOV A, #80H
+    MOV @R0, A
+    ACALL ENABLE_PWM
+    MOV A,#0C6H
+    ACALL CMD
+    MOV DPTR, #MEDMSG
+    ACALL WRITESTR
+    LJMP CONTINUE
+
+FAN_ON:
+    CLR TR0
+    MOV IE, #80H        ; Disable PWM
+    SETB P1.5           ; Fan logic 1
+    CLR P1.6
+    MOV A,#0C6H
+    ACALL CMD
+    MOV DPTR, #HIGHMSG
+    ACALL WRITESTR
+    LJMP CONTINUE
+
+ENABLE_PWM:
+    MOV TMOD, #01H
+    MOV R0, #ON_DELAY
+    MOV A, @R0
+    MOV TH0, A
+    MOV TL0, #00H
+    MOV PWM_FLAG, #01H
+    SETB TR0
+    SETB P1.5
+    CLR P1.6
+    MOV IE, #82H
+    RET
+
+CONTINUE:
+    ACALL DELAY1
+    LJMP MAIN_LOOP
+
+
+TIMER_ISR:
+    CLR TR0
+    MOV A, PWM_FLAG
+    CJNE A, #01H, SET_ON
+    MOV R0, #OFF_DELAY
+    MOV A, @R0
+    MOV TH0, A
+    MOV PWM_FLAG, #00H
+    CLR P1.5
+    SJMP DONE
+SET_ON:
+    MOV R0, #ON_DELAY
+    MOV A, @R0
+    MOV TH0, A
+    MOV PWM_FLAG, #01H
+    SETB P1.5
+DONE:
+    MOV TL0, #00H
+    SETB TR0
+    RETI
+
+
+SHOW_TEMP:
+    MOV A, TEMP_VAL
+    MOV B, #10
+    DIV AB
+    MOV R7, B
+    ADD A, #30H
+    ACALL WRITE
+    MOV A, R7
+    ADD A, #30H
+    ACALL WRITE
+    MOV A, #0DFH
+    ACALL WRITE
+    MOV A, #'C'
+    ACALL WRITE
+    RET
+
+CMD:
+    MOV P2,A
+    CLR P3.1
+    CLR P3.0
+    SETB P3.2
+    ACALL DELAY
+    CLR P3.2
+    RET
+
+WRITE:
+    MOV P2,A
+    SETB P3.1
+    CLR P3.0
+    SETB P3.2
+    ACALL DELAY
+    CLR P3.2
+    RET
+
+WRITESTR:
+    CLR A
+    MOVC A,@A+DPTR
+    JZ RETURN
+    ACALL WRITE
+    ACALL DELAY
+    INC DPTR
+    SJMP WRITESTR
+RETURN: RET
+
+DELAY:
+    MOV TMOD,#01H
+    MOV TH0,#0EDH
+    MOV TL0,#097H
+    SETB TR0
+WAIT: JNB TF0, WAIT
+    CLR TR0
+    CLR TF0
+    RET
+
+DELAY1:
+    MOV R5, #100
+DL1: ACALL DELAY
+    DJNZ R5, DL1
+    RET
+
+
+TEMPMSG:  DB "TEMP: ", 0
+FANMSG:   DB "FAN : ", 0
+LOWMSG:   DB "LOW SPEED", 0
+MEDMSG:   DB "MED SPEED", 0
+HIGHMSG:  DB "HIG SPEED", 0
+MSG1:     DB "AUTO TEMP FAN", 0
+MSG2:     DB "8051 (AT89C51)", 0
+
+END
