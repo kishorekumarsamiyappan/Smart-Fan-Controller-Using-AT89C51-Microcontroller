@@ -54,17 +54,23 @@ This system:
 
 Insert simulation screenshots or waveform plots here:
 
-* ![Proteus circuit design](https://github.com/user-attachments/assets/d0a91145-9052-4ffa-a892-57d00be14e0f)
-* [ ] PWM waveform (50% and 100% duty cycle)![Screenshot 2025-05-19 041225](https://github.com/user-attachments/assets/0da5b931-3b44-48cd-b0d8-60640d96c88e)
+![Proteus circuit design](https://github.com/user-attachments/assets/d0a91145-9052-4ffa-a892-57d00be14e0f)
+
+---
+ OFF Status :
+![Screenshot 2025-05-19 041225](https://github.com/user-attachments/assets/0da5b931-3b44-48cd-b0d8-60640d96c88e)
+ OFF Status WaveForm :
 ![Screenshot 2025-05-19 041258](https://github.com/user-attachments/assets/5b00a82f-a137-470f-8e30-3b6149c783ea)
+---
+ Medium Status :
 ![Screenshot 2025-05-19 042421](https://github.com/user-attachments/assets/45f9a158-3b2a-49f8-a062-dbc5ca15bdca)
+ Medium Status WaveForm :
 ![Screenshot 2025-05-19 041335](https://github.com/user-attachments/assets/93ba0965-5a91-44d9-a92d-04524563cb3f)
+---
+High Status :
 ![Screenshot 2025-05-19 041817](https://github.com/user-attachments/assets/eb545a2d-ac06-4db2-89aa-3cd84a3b1e02)
+High Status WaveForm :
 ![Screenshot 2025-05-19 041608](https://github.com/user-attachments/assets/313c1bc1-1aff-41e2-aaf9-63c2ae5fed12)
-
-* [ ] LCD output at various temperatures
-
-
 
 ## 🧠 Key Learning Areas
 
