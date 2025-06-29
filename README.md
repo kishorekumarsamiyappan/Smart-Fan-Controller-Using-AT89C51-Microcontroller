@@ -6,8 +6,6 @@ A standalone smart fan controller that adjusts fan speed based on real-time temp
 22ECL42 – Microprocessor and Microcontroller Lab
 Department of ECE, Kongu Engineering College
 
-
-
 ## 🛠️ Project Overview
 
 This system:
