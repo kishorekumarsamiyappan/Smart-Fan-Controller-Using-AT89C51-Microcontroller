@@ -73,6 +73,10 @@ High Status :
 High Status WaveForm :
 ![Screenshot 2025-05-19 041608](https://github.com/user-attachments/assets/313c1bc1-1aff-41e2-aaf9-63c2ae5fed12)
 
+## 📷 Screen Recoding
+
+ [Uploading Temp Fan Cont.mp4…](https://github.com/user-attachments/assets/a8a11760-eb19-427a-8a92-a018cb9c9f37)
+
 ## 🧠 Key Learning Areas
 
 * Microcontroller programming (Assembly / Embedded C)
